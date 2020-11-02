@@ -3,17 +3,22 @@
  * @param {import('probot').Application} app
  */
 module.exports = app => {
-  // Your code here
-  app.log.info('Yay, the app was loaded!')
+    // Your code here
+    app.log.info('Yay, the app was loaded!')
 
-  app.on('issues.opened', async context => {
-    const issueComment = context.issue({ body: 'Thanks for opening this issue!' })
-    return context.github.issues.createComment(issueComment)
-  })
+  /*  app.on('issues.opened', async context => {
+        const issueComment = context.issue({body: 'Thanks for opening this issue!'})
+        return context.github.issues.createComment(issueComment)
+    })*/
 
-  // For more information on building apps:
-  // https://probot.github.io/docs/
+    app.on("*", async (context) => {
+        console.log('hook recieved ..');
+            context.log.info({event: context.event, action: context.payload.action});
+        });
 
-  // To get your app running against GitHub, see:
-  // https://probot.github.io/docs/development/
+    // For more information on building apps:
+    // https://probot.github.io/docs/
+
+    // To get your app running against GitHub, see:
+    // https://probot.github.io/docs/development/
 }
