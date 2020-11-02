@@ -1,0 +1,1 @@
+# sn-bot-checker
